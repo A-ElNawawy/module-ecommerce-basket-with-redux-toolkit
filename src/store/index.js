@@ -1,18 +1,13 @@
-import { createStore } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 
-const initialState = {
-  BasketItems: [],
-};
+import uiSliceReducer from "./ui-slice";
+import cartReducer from "./cart-slice";
 
-const basketReducer = (state = initialState, action) => {
-  if (action.type === "basket") {
-    return {
-      BasketItems: [...action.payload],
-    };
-  }
-  return state;
-};
-
-const store = createStore(basketReducer);
+const store = configureStore({
+  reducer: {
+    ui: uiSliceReducer,
+    cart: cartReducer,
+  },
+});
 
 export default store;
